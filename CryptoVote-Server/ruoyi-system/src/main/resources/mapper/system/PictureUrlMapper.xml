@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.system.mapper.PictureUrlMapper">
+    
+    <resultMap type="PictureUrl" id="PictureUrlResult">
+        <result property="id"    column="id"    />
+        <result property="imgurl"    column="imgurl"    />
+        <result property="type"    column="type"    />
+    </resultMap>
+
+    <sql id="selectPictureUrlVo">
+        select id, imgurl, type from picture_url
+    </sql>
+
+    <select id="selectPictureUrlList" parameterType="PictureUrl" resultMap="PictureUrlResult">
+        <include refid="selectPictureUrlVo"/>
+        <where>  
+            <if test="imgurl != null  and imgurl != ''"> and imgurl = #{imgurl}</if>
+            <if test="type != null  and type != ''"> and type = #{type}</if>
+        </where>
+    </select>
+    
+    <select id="selectPictureUrlById" parameterType="Long" resultMap="PictureUrlResult">
+        <include refid="selectPictureUrlVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertPictureUrl" parameterType="PictureUrl" useGeneratedKeys="true" keyProperty="id">
+        insert into picture_url
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="imgurl != null">imgurl,</if>
+            <if test="type != null">type,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="imgurl != null">#{imgurl},</if>
+            <if test="type != null">#{type},</if>
+         </trim>
+    </insert>
+
+    <update id="updatePictureUrl" parameterType="PictureUrl">
+        update picture_url
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="imgurl != null">imgurl = #{imgurl},</if>
+            <if test="type != null">type = #{type},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deletePictureUrlById" parameterType="Long">
+        delete from picture_url where id = #{id}
+    </delete>
+
+    <delete id="deletePictureUrlByIds" parameterType="String">
+        delete from picture_url where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+</mapper>

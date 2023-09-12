@@ -1,0 +1,2 @@
+rootProject.name = "投票APP"
+include ':app'

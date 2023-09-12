@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.system.mapper.AppShenheMapper">
+    
+    <resultMap type="AppShenhe" id="AppShenheResult">
+        <result property="id"    column="id"    />
+        <result property="userId"    column="user_id"    />
+        <result property="pic"    column="pic"    />
+        <result property="minzu"    column="minzu"    />
+        <result property="sex"    column="sex"    />
+        <result property="age"    column="age"    />
+        <result property="zzmm"    column="zzmm"    />
+        <result property="jiguan"    column="jiguan"    />
+        <result property="hyzk"    column="hyzk"    />
+        <result property="xlxx"    column="xlxx"    />
+        <result property="cylb"    column="cylb"    />
+        <result property="dszv"    column="dszv"    />
+        <result property="name"    column="name"    />
+        <result property="phone"    column="phone"    />
+        <result property="sfzid"    column="sfzid"    />
+        <result property="address"    column="address"    />
+        <result property="type"    column="type"    />
+    </resultMap>
+
+    <sql id="selectAppShenheVo">
+        select id, user_id, pic, minzu, sex, age, zzmm, jiguan, hyzk, xlxx, cylb, dszv, name, phone, sfzid, address, type from app_shenhe
+    </sql>
+
+    <select id="selectAppShenheList" parameterType="AppShenhe" resultMap="AppShenheResult">
+        <include refid="selectAppShenheVo"/>
+        <where>  
+            <if test="userId != null  and userId != ''"> and user_id = #{userId}</if>
+            <if test="pic != null  and pic != ''"> and pic = #{pic}</if>
+            <if test="minzu != null  and minzu != ''"> and minzu = #{minzu}</if>
+            <if test="sex != null  and sex != ''"> and sex = #{sex}</if>
+            <if test="age != null  and age != ''"> and age = #{age}</if>
+            <if test="zzmm != null  and zzmm != ''"> and zzmm = #{zzmm}</if>
+            <if test="jiguan != null  and jiguan != ''"> and jiguan = #{jiguan}</if>
+            <if test="hyzk != null  and hyzk != ''"> and hyzk = #{hyzk}</if>
+            <if test="xlxx != null  and xlxx != ''"> and xlxx = #{xlxx}</if>
+            <if test="cylb != null  and cylb != ''"> and cylb = #{cylb}</if>
+            <if test="dszv != null  and dszv != ''"> and dszv = #{dszv}</if>
+            <if test="name != null  and name != ''"> and name like concat('%', #{name}, '%')</if>
+            <if test="phone != null  and phone != ''"> and phone = #{phone}</if>
+            <if test="sfzid != null  and sfzid != ''"> and sfzid = #{sfzid}</if>
+            <if test="address != null  and address != ''"> and address = #{address}</if>
+            <if test="type != null  and type != ''"> and type = #{type}</if>
+        </where>
+    </select>
+    
+    <select id="selectAppShenheById" parameterType="Long" resultMap="AppShenheResult">
+        <include refid="selectAppShenheVo"/>
+        where id = #{id}
+    </select>
+
+    <select id="countbmsh" parameterType="String" resultType="java.lang.Integer">
+        select count(1) from app_shenhe where user_id = #{user_id}
+    </select>
+        
+    <insert id="insertAppShenhe" parameterType="AppShenhe">
+        insert into app_shenhe
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">id,</if>
+            <if test="userId != null">user_id,</if>
+            <if test="pic != null">pic,</if>
+            <if test="minzu != null">minzu,</if>
+            <if test="sex != null">sex,</if>
+            <if test="age != null">age,</if>
+            <if test="zzmm != null">zzmm,</if>
+            <if test="jiguan != null">jiguan,</if>
+            <if test="hyzk != null">hyzk,</if>
+            <if test="xlxx != null">xlxx,</if>
+            <if test="cylb != null">cylb,</if>
+            <if test="dszv != null">dszv,</if>
+            <if test="name != null">name,</if>
+            <if test="phone != null">phone,</if>
+            <if test="sfzid != null">sfzid,</if>
+            <if test="address != null">address,</if>
+            <if test="type != null">type,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">#{id},</if>
+            <if test="userId != null">#{userId},</if>
+            <if test="pic != null">#{pic},</if>
+            <if test="minzu != null">#{minzu},</if>
+            <if test="sex != null">#{sex},</if>
+            <if test="age != null">#{age},</if>
+            <if test="zzmm != null">#{zzmm},</if>
+            <if test="jiguan != null">#{jiguan},</if>
+            <if test="hyzk != null">#{hyzk},</if>
+            <if test="xlxx != null">#{xlxx},</if>
+            <if test="cylb != null">#{cylb},</if>
+            <if test="dszv != null">#{dszv},</if>
+            <if test="name != null">#{name},</if>
+            <if test="phone != null">#{phone},</if>
+            <if test="sfzid != null">#{sfzid},</if>
+            <if test="address != null">#{address},</if>
+            <if test="type != null">#{type},</if>
+         </trim>
+    </insert>
+
+    <update id="updateAppShenhe" parameterType="AppShenhe">
+        update app_shenhe
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="userId != null">user_id = #{userId},</if>
+            <if test="pic != null">pic = #{pic},</if>
+            <if test="minzu != null">minzu = #{minzu},</if>
+            <if test="sex != null">sex = #{sex},</if>
+            <if test="age != null">age = #{age},</if>
+            <if test="zzmm != null">zzmm = #{zzmm},</if>
+            <if test="jiguan != null">jiguan = #{jiguan},</if>
+            <if test="hyzk != null">hyzk = #{hyzk},</if>
+            <if test="xlxx != null">xlxx = #{xlxx},</if>
+            <if test="cylb != null">cylb = #{cylb},</if>
+            <if test="dszv != null">dszv = #{dszv},</if>
+            <if test="name != null">name = #{name},</if>
+            <if test="phone != null">phone = #{phone},</if>
+            <if test="sfzid != null">sfzid = #{sfzid},</if>
+            <if test="address != null">address = #{address},</if>
+            <if test="type != null">type = #{type},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteAppShenheById" parameterType="Long">
+        delete from app_shenhe where id = #{id}
+    </delete>
+
+    <delete id="deleteAppShenheByIds" parameterType="String">
+        delete from app_shenhe where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+</mapper>

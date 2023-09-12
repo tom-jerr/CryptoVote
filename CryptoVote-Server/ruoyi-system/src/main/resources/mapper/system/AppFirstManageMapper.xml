@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.system.mapper.AppFirstManageMapper">
+    
+    <resultMap type="AppFirstManage" id="AppFirstManageResult">
+        <result property="newsId"    column="news_id"    />
+        <result property="newsTitle"    column="news_title"    />
+        <result property="picurl"    column="picurl"    />
+        <result property="content"    column="content"    />
+        <result property="type"    column="type"    />
+    </resultMap>
+
+    <sql id="selectAppFirstManageVo">
+        select news_id, news_title, picurl, content, type from app_first_manage
+    </sql>
+
+    <select id="selectAppFirstManageList" parameterType="AppFirstManage" resultMap="AppFirstManageResult">
+        <include refid="selectAppFirstManageVo"/>
+        <where>  
+            <if test="newsTitle != null  and newsTitle != ''"> and news_title = #{newsTitle}</if>
+            <if test="picurl != null  and picurl != ''"> and picurl = #{picurl}</if>
+            <if test="content != null  and content != ''"> and content = #{content}</if>
+            <if test="type != null  and type != ''"> and type = #{type}</if>
+        </where>
+    </select>
+
+    <select id="selectpictureurl" parameterType="String" resultType="java.util.Map">
+        select  * from  picture_url
+    </select>
+
+
+    <select id="selectshztcount" parameterType="String" resultType="java.lang.String">
+        select type from  app_shenhe where  user_id = #{user_id}
+    </select>
+    
+    <select id="selectAppFirstManageByNewsId" parameterType="Long" resultMap="AppFirstManageResult">
+        <include refid="selectAppFirstManageVo"/>
+        where news_id = #{newsId}
+    </select>
+        
+    <insert id="insertAppFirstManage" parameterType="AppFirstManage" useGeneratedKeys="true" keyProperty="newsId">
+        insert into app_first_manage
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="newsTitle != null">news_title,</if>
+            <if test="picurl != null">picurl,</if>
+            <if test="content != null">content,</if>
+            <if test="type != null">type,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="newsTitle != null">#{newsTitle},</if>
+            <if test="picurl != null">#{picurl},</if>
+            <if test="content != null">#{content},</if>
+            <if test="type != null">#{type},</if>
+         </trim>
+    </insert>
+
+    <update id="updateAppFirstManage" parameterType="AppFirstManage">
+        update app_first_manage
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="newsTitle != null">news_title = #{newsTitle},</if>
+            <if test="picurl != null">picurl = #{picurl},</if>
+            <if test="content != null">content = #{content},</if>
+            <if test="type != null">type = #{type},</if>
+        </trim>
+        where news_id = #{newsId}
+    </update>
+
+    <delete id="deleteAppFirstManageByNewsId" parameterType="Long">
+        delete from app_first_manage where news_id = #{newsId}
+    </delete>
+
+    <delete id="deleteAppFirstManageByNewsIds" parameterType="String">
+        delete from app_first_manage where news_id in 
+        <foreach item="newsId" collection="array" open="(" separator="," close=")">
+            #{newsId}
+        </foreach>
+    </delete>
+
+</mapper>

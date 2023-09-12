@@ -1,0 +1,482 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <include
+        android:id="@+id/title_include"
+        layout="@layout/top_include"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clipToPadding="true"
+        android:fitsSystemWindows="true" />
+
+    <com.scwang.smart.refresh.layout.SmartRefreshLayout
+        android:id="@+id/refreshLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/title_include"
+        app:srlEnableAutoLoadMore="false"
+        app:srlPrimaryColor="@color/white">
+
+        <com.scwang.smart.refresh.header.ClassicsHeader
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:srlAccentColor="@color/purple_200"
+            app:srlPrimaryColor="@color/white" />
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:id="@+id/llCenter"
+                    android:paddingHorizontal="@dimen/dp_13"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                   >
+
+                    <com.example.toupiao.view.CustomShapeImageView
+                        android:id="@+id/ivHead"
+                        android:layout_width="@dimen/dp_90"
+                        android:layout_height="@dimen/dp_90"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="@dimen/dp20"
+                        android:scaleType="centerCrop"
+                        android:src="@mipmap/bg_zhanweitu"
+                        app:onlyDrawBorder="false"
+                        app:roundRadius="@dimen/dp_4"
+                        app:shape="rectangle" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dp_50"
+                        android:layout_marginTop="@dimen/dp40">
+
+                        <TextView
+                            style="@style/text_14_101010_style"
+                            android:layout_centerVertical="true"
+                            android:text="民族"
+                            android:textSize="@dimen/dp_17" />
+
+                        <EditText
+                            android:id="@+id/etMinZu"
+                            android:background="@drawable/gray_biankuang_4_shape"
+                            style="@style/text_14_101010_style"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:drawablePadding="@dimen/dp5"
+                            android:hint="请输入民族"
+                            android:gravity="right"
+                            android:paddingHorizontal="@dimen/dp9"
+                            android:paddingVertical="@dimen/dp5"
+                            android:textSize="@dimen/dp_14" />
+
+                    </RelativeLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1px"
+                        android:background="@color/_888888" />
+
+                    <RelativeLayout
+                        android:id="@+id/rlChooseSex"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dp_50">
+
+
+                        <TextView
+                            style="@style/text_14_101010_style"
+                            android:layout_centerVertical="true"
+                            android:text="性别"
+                            android:textSize="@dimen/dp_17" />
+
+                        <TextView
+                            android:id="@+id/tvSex"
+                            style="@style/text_14_101010_style"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:drawableRight="@mipmap/icon_jiantou"
+                            android:drawablePadding="@dimen/dp5"
+                            android:hint="选择性别"
+                            android:gravity="right"
+                            android:textSize="@dimen/dp_16" />
+                    </RelativeLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1px"
+                        android:background="@color/_888888" />
+
+                    <RelativeLayout
+                        android:id="@+id/rlChooseAge"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dp_50">
+
+                        <TextView
+                            style="@style/text_14_101010_style"
+                            android:layout_centerVertical="true"
+                            android:text="年龄"
+                            android:textSize="@dimen/dp_17" />
+
+                        <TextView
+                            android:id="@+id/tvAge"
+                            style="@style/text_14_101010_style"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:drawableRight="@mipmap/icon_jiantou"
+                            android:drawablePadding="@dimen/dp5"
+                            android:hint="选择年龄"
+                            android:gravity="right"
+                            android:textSize="@dimen/dp_16" />
+                    </RelativeLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1px"
+                        android:background="@color/_888888" />
+
+                    <RelativeLayout
+                        android:id="@+id/rlChooseZZMM"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dp_50">
+
+                        <TextView
+                            style="@style/text_14_101010_style"
+                            android:layout_centerVertical="true"
+                            android:text="政治面貌"
+                            android:textSize="@dimen/dp_17" />
+
+                        <TextView
+                            android:id="@+id/tvZZMM"
+                            style="@style/text_14_101010_style"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:drawableRight="@mipmap/icon_jiantou"
+                            android:drawablePadding="@dimen/dp5"
+                            android:hint="选择政治面貌"
+                            android:gravity="right"
+                            android:textSize="@dimen/dp_16" />
+                    </RelativeLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1px"
+                        android:background="@color/_888888" />
+                    <RelativeLayout
+
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dp_50">
+
+                        <TextView
+                            style="@style/text_14_101010_style"
+                            android:layout_centerVertical="true"
+                            android:text="籍贯"
+                            android:textSize="@dimen/dp_17" />
+
+                        <EditText
+                            android:id="@+id/etJG"
+                            android:background="@drawable/gray_biankuang_4_shape"
+                            style="@style/text_14_101010_style"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:drawablePadding="@dimen/dp5"
+                            android:hint="请输入籍贯"
+                            android:gravity="right"
+                            android:paddingHorizontal="@dimen/dp9"
+                            android:paddingVertical="@dimen/dp5"
+                            android:textSize="@dimen/dp_14" />
+
+                    </RelativeLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1px"
+                        android:background="@color/_888888" />
+                    <RelativeLayout
+                        android:id="@+id/rlChooseHYZK"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dp_50">
+
+                        <TextView
+                            style="@style/text_14_101010_style"
+                            android:layout_centerVertical="true"
+                            android:text="婚姻状况"
+                            android:textSize="@dimen/dp_17" />
+
+                        <TextView
+                            android:id="@+id/tvHYZHK"
+                            style="@style/text_14_101010_style"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:drawableRight="@mipmap/icon_jiantou"
+                            android:drawablePadding="@dimen/dp5"
+                            android:hint="选择婚姻状况"
+                            android:gravity="right"
+                            android:textSize="@dimen/dp_16" />
+                    </RelativeLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1px"
+                        android:background="@color/_888888" />
+                    <RelativeLayout
+                        android:id="@+id/rlChooseXL"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dp_50">
+
+                        <TextView
+                            style="@style/text_14_101010_style"
+                            android:layout_centerVertical="true"
+                            android:text="学历信息"
+                            android:textSize="@dimen/dp_17" />
+
+                        <TextView
+                            android:id="@+id/tvXL"
+                            style="@style/text_14_101010_style"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:drawableRight="@mipmap/icon_jiantou"
+                            android:drawablePadding="@dimen/dp5"
+                            android:hint="选择学历"
+                            android:gravity="right"
+                            android:textSize="@dimen/dp_16" />
+                    </RelativeLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1px"
+                        android:background="@color/_888888" />
+                    <RelativeLayout
+
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dp_50">
+
+                        <TextView
+                            style="@style/text_14_101010_style"
+                            android:layout_centerVertical="true"
+                            android:text="从业类别"
+                            android:textSize="@dimen/dp_17" />
+
+                        <EditText
+                            android:id="@+id/etCYLB"
+                            android:background="@drawable/gray_biankuang_4_shape"
+                            style="@style/text_14_101010_style"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:drawablePadding="@dimen/dp5"
+                            android:hint="请输入从业类别"
+                            android:gravity="right"
+                            android:paddingHorizontal="@dimen/dp9"
+                            android:paddingVertical="@dimen/dp5"
+                            android:textSize="@dimen/dp_14" />
+
+                    </RelativeLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1px"
+                        android:background="@color/_888888" />
+                    <RelativeLayout
+                        android:id="@+id/rlChooseDSZN"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dp_50">
+
+                        <TextView
+                            style="@style/text_14_101010_style"
+                            android:layout_centerVertical="true"
+                            android:text="独生子女"
+                            android:textSize="@dimen/dp_17" />
+
+                        <TextView
+                            android:id="@+id/tvDSZN"
+                            style="@style/text_14_101010_style"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:drawableRight="@mipmap/icon_jiantou"
+                            android:drawablePadding="@dimen/dp5"
+                            android:hint="选择独生子女"
+                            android:gravity="right"
+                            android:textSize="@dimen/dp_16" />
+                    </RelativeLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1px"
+                        android:background="@color/_888888" />
+                    <RelativeLayout
+
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dp_50">
+
+                        <TextView
+                            style="@style/text_14_101010_style"
+                            android:layout_centerVertical="true"
+                            android:text="姓名"
+                            android:textSize="@dimen/dp_17" />
+
+                        <EditText
+                            android:id="@+id/etName"
+                            android:background="@drawable/gray_biankuang_4_shape"
+                            style="@style/text_14_101010_style"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:drawablePadding="@dimen/dp5"
+                            android:hint="请输入名字"
+                            android:gravity="right"
+                            android:paddingHorizontal="@dimen/dp9"
+                            android:paddingVertical="@dimen/dp5"
+                            android:textSize="@dimen/dp_14" />
+
+                    </RelativeLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1px"
+                        android:background="@color/_888888" />
+                    <RelativeLayout
+
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dp_50">
+
+                        <TextView
+                            style="@style/text_14_101010_style"
+                            android:layout_centerVertical="true"
+                            android:text="手机号"
+                            android:textSize="@dimen/dp_17" />
+
+                        <EditText
+                            android:id="@+id/etPhone"
+                            android:gravity="right"
+                            android:background="@drawable/gray_biankuang_4_shape"
+                            style="@style/text_14_101010_style"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:drawablePadding="@dimen/dp5"
+                            android:hint="请输入手机号"
+                            android:inputType="phone"
+                            android:paddingHorizontal="@dimen/dp9"
+                            android:paddingVertical="@dimen/dp5"
+                            android:textSize="@dimen/dp_14" />
+
+                    </RelativeLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1px"
+                        android:background="@color/_888888" />
+                    <RelativeLayout
+
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dp_50">
+
+                        <TextView
+                            style="@style/text_14_101010_style"
+                            android:layout_centerVertical="true"
+                            android:text="身份证号"
+                            android:textSize="@dimen/dp_17" />
+
+                        <EditText
+                            android:id="@+id/etIDCARD"
+                            android:gravity="right"
+                            android:background="@drawable/gray_biankuang_4_shape"
+                            style="@style/text_14_101010_style"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:drawablePadding="@dimen/dp5"
+                            android:hint="请输入身份证号"
+                            android:paddingHorizontal="@dimen/dp9"
+                            android:paddingVertical="@dimen/dp5"
+                            android:textSize="@dimen/dp_14" />
+
+                    </RelativeLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1px"
+                        android:background="@color/_888888" />
+                    <RelativeLayout
+
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dp_50">
+
+                        <TextView
+                            style="@style/text_14_101010_style"
+                            android:layout_centerVertical="true"
+                            android:text="家庭住址"
+                            android:textSize="@dimen/dp_17" />
+
+                        <EditText
+                            android:id="@+id/tvAddress"
+                            android:background="@drawable/gray_biankuang_4_shape"
+                            style="@style/text_14_101010_style"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:drawablePadding="@dimen/dp5"
+                            android:hint="请输入家庭住址"
+                            android:gravity="right"
+                            android:paddingHorizontal="@dimen/dp9"
+                            android:paddingVertical="@dimen/dp5"
+                            android:textSize="@dimen/dp_14" />
+
+                    </RelativeLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1px"
+                        android:background="@color/_888888" />
+                    <Button
+                        android:layout_width="wrap_content"
+
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/dp_16"
+                        android:text="提交报名"
+                        android:layout_marginTop="@dimen/dp20"
+                        android:layout_marginBottom="@dimen/dp_30"
+                        android:layout_gravity="center_horizontal"
+                        android:id="@+id/vtSubmit"
+                        android:background="@drawable/blue_button_shape"
+                        android:layout_height="@dimen/dp_45"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/llShenHe"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:visibility="gone"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="@dimen/dp_150"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/ivState"
+                        android:layout_width="90dp"
+                        android:layout_height="90dp"
+                        android:scaleType="centerCrop"
+                        android:src="@mipmap/shenhe_wait" />
+                 <TextView
+                     android:id="@+id/tvState"
+                     android:text="提交审核,耐心等待"
+                     android:layout_marginTop="@dimen/dp10"
+                     android:textSize="@dimen/dp_18"
+                     android:textColor="@color/red"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"/>
+                </LinearLayout>
+            </RelativeLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+
+    </com.scwang.smart.refresh.layout.SmartRefreshLayout>
+
+
+</RelativeLayout>

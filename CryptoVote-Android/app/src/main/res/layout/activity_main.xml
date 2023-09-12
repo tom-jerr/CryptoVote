@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:windowTranslucentNavigation="false">
+
+    <com.example.toupiao.view.NoScrollViewPager
+        android:id="@+id/vp_main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1" />
+
+    <RadioGroup
+        android:id="@+id/rg_menutab"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/main_bottom_bg_shape"
+        android:clipChildren="false"
+        android:orientation="horizontal"
+        android:paddingVertical="@dimen/dp5">
+
+        <RadioButton
+            android:id="@+id/rb_one"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/transparent"
+            android:button="@null"
+            android:checked="true"
+            android:drawableTop="@drawable/my_menu1_selector"
+            android:gravity="center_horizontal"
+            android:text="首页"
+            android:textColor="@color/white"
+            android:textSize="@dimen/shiyi" />
+
+        <RadioButton
+            android:id="@+id/rb_three"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/transparent"
+            android:button="@null"
+            android:drawableTop="@drawable/my_menu5_selector"
+            android:gravity="center_horizontal"
+            android:text="我的"
+            android:textColor="@color/white"
+            android:textSize="@dimen/shiyi" />
+    </RadioGroup>
+</LinearLayout>

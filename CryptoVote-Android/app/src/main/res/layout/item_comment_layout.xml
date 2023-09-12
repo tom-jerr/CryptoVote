@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="5dp"
+    android:orientation="horizontal"
+    android:layout_marginHorizontal="@dimen/dp_10"
+    android:paddingVertical="@dimen/dp_10">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_weight="1"
+        android:orientation="vertical">
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <com.example.toupiao.view.CircleImageView
+                android:id="@+id/ivHead"
+                android:layout_width="@dimen/dp40"
+                android:layout_height="@dimen/dp40"
+                android:scaleType="centerCrop"
+                android:src="@mipmap/bg_zhanweitu" />
+            <TextView
+                android:id="@+id/tvName"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/dp10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:ellipsize="end"
+                android:layout_toRightOf="@+id/ivHead"
+                android:maxLines="2"
+                android:text="毛衣"
+                android:textColor="#101010"
+                android:textSize="15dp"
+                android:textStyle="bold" />
+        </RelativeLayout>
+
+
+        <TextView
+            android:id="@+id/tvContent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:text="毛线"
+            android:textColor="#888888"
+            android:textSize="12dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="right"
+        android:orientation="vertical">
+        <CheckBox
+            android:id="@+id/cbLike"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:background="@color/transparent"
+            android:button="@drawable/like_selector" />
+        <TextView
+            android:id="@+id/tvTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp20"
+            android:text="2023-04-04 10：10：10"
+            android:textColor="@color/gray3"
+            android:textSize="@dimen/dp_12" />
+
+
+    </LinearLayout>
+
+
+</LinearLayout>

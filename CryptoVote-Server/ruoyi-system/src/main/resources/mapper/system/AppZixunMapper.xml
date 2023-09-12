@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.system.mapper.AppZixunMapper">
+    
+    <resultMap type="AppZixun" id="AppZixunResult">
+        <result property="zixunId"    column="zixun_id"    />
+        <result property="title"    column="title"    />
+        <result property="img1"    column="img1"    />
+        <result property="img2"    column="img2"    />
+        <result property="img3"    column="img3"    />
+        <result property="mark"    column="mark"    />
+        <result property="backup"    column="backup"    />
+        <result property="userId"    column="user_id"    />
+
+        <result property="comment_id"    column="comment_id"    />
+        <result property="comment_info"    column="comment_info"    />
+        <result property="dianzan"    column="dianzan"    />
+
+    </resultMap>
+
+
+    <update id="updateDianzan" parameterType="AppZixun">
+        update app_comment_info set dianzan = #{dianzan} where comment_id = #{comment_id}
+
+    </update>
+
+
+    <select id="selectcommentinfo" parameterType="String" resultType="java.util.Map">
+        select c.comment_id, c.comment_info, c.user_id,u.head_url,  c.dianzan, c.zixun_id ,DATE_FORMAT(c.com_systime,'%Y-%m-%d %H:%i:%s') as com_systime
+        from app_comment_info c
+                 LEFT JOIN appuser_info u ON c.user_id = u.user_id WHERE c.zixun_id = #{zixun_id}
+    </select>
+
+
+<!--插入评论-->
+    <insert id="insertComment" parameterType="AppZixun" useGeneratedKeys="true" keyProperty="comment_id">
+        insert into app_comment_info
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="comment_id != null">comment_id,</if>
+            <if test="comment_info != null">comment_info,</if>
+            <if test="dianzan != null">dianzan,</if>
+            <if test="zixun_id != null">zixun_id,</if>
+            <if test="user_id != null">user_id,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="comment_id != null">#{comment_id},</if>
+            <if test="comment_info != null">#{comment_info},</if>
+            <if test="dianzan != null">#{dianzan},</if>
+            <if test="zixun_id != null">#{zixun_id},</if>
+            <if test="user_id != null">#{user_id},</if>
+        </trim>
+    </insert>
+
+    <sql id="selectAppZixunVo">
+        select zixun_id, title, img1, img2, img3, mark, backup, user_id from app_zixun
+    </sql>
+
+    <select id="selectAppZixunList" parameterType="AppZixun" resultMap="AppZixunResult">
+        <include refid="selectAppZixunVo"/>
+        <where>  
+            <if test="title != null  and title != ''"> and title = #{title}</if>
+            <if test="img1 != null  and img1 != ''"> and img1 = #{img1}</if>
+            <if test="img2 != null  and img2 != ''"> and img2 = #{img2}</if>
+            <if test="img3 != null  and img3 != ''"> and img3 = #{img3}</if>
+            <if test="mark != null  and mark != ''"> and mark = #{mark}</if>
+            <if test="backup != null  and backup != ''"> and backup = #{backup}</if>
+        </where>
+    </select>
+
+    <select id="selectAppZixunListapp" parameterType="AppZixun" resultType="java.util.Map">
+        select zixun_id, title, img1, img2, img3, mark, backup, user_id,DATE_FORMAT(zx_systime,'%Y-%m-%d %H:%i:%s') as zx_systime from app_zixun
+        <where>
+            <if test="user_id != null  and user_id != ''"> and user_id = #{user_id}</if>
+            <if test="zixun_id != null  and zixun_id != ''"> and zixun_id = #{zixun_id}</if>
+        </where>
+    </select>
+    
+    <select id="selectAppZixunByZixunId" parameterType="Long" resultMap="AppZixunResult">
+        <include refid="selectAppZixunVo"/>
+        where zixun_id = #{zixunId}
+    </select>
+        
+    <insert id="insertAppZixun" parameterType="AppZixun" useGeneratedKeys="true" keyProperty="zixunId">
+        insert into app_zixun
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="title != null">title,</if>
+            <if test="img1 != null">img1,</if>
+            <if test="img2 != null">img2,</if>
+            <if test="img3 != null">img3,</if>
+            <if test="mark != null">mark,</if>
+            <if test="backup != null">backup,</if>
+            <if test="userId != null">user_id,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="title != null">#{title},</if>
+            <if test="img1 != null">#{img1},</if>
+            <if test="img2 != null">#{img2},</if>
+            <if test="img3 != null">#{img3},</if>
+            <if test="mark != null">#{mark},</if>
+            <if test="backup != null">#{backup},</if>
+            <if test="userId != null">#{userId},</if>
+         </trim>
+    </insert>
+
+    <update id="updateAppZixun" parameterType="AppZixun">
+        update app_zixun
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="title != null">title = #{title},</if>
+            <if test="img1 != null">img1 = #{img1},</if>
+            <if test="img2 != null">img2 = #{img2},</if>
+            <if test="img3 != null">img3 = #{img3},</if>
+            <if test="mark != null">mark = #{mark},</if>
+            <if test="backup != null">backup = #{backup},</if>
+            <if test="userId != null">user_id = #{userId},</if>
+        </trim>
+        where zixun_id = #{zixunId}
+    </update>
+
+    <delete id="deleteAppZixunByZixunId" parameterType="Long">
+        delete from app_zixun where zixun_id = #{zixunId}
+    </delete>
+
+    <delete id="deleteAppZixunByZixunIds" parameterType="String">
+        delete from app_zixun where zixun_id in 
+        <foreach item="zixunId" collection="array" open="(" separator="," close=")">
+            #{zixunId}
+        </foreach>
+    </delete>
+
+
+
+
+
+</mapper>

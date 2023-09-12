@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/dp10"
+    android:paddingHorizontal="@dimen/dp20"
+    android:orientation="vertical"
+  >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <com.example.toupiao.view.CustomShapeImageView
+            android:id="@+id/ivHead"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_150"
+            android:scaleType="centerCrop"
+
+            android:src="@mipmap/bg_zhanweitu"
+            app:onlyDrawBorder="false"
+            app:roundRadius="@dimen/dp_4"
+            app:shape="rectangle" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+     >
+
+        <TextView
+            android:id="@+id/tvName"
+            style="@style/text_14_101010_style"
+            android:layout_marginTop="@dimen/dp10"
+            android:text="我是标题"
+            android:gravity="left"
+            android:textSize="@dimen/dp_16"
+            android:textColor="@color/_101010"
+            android:textStyle="bold" />
+        <TextView
+            android:id="@+id/tvState"
+            style="@style/text_14_101010_style"
+            android:layout_marginTop="@dimen/dp10"
+            android:text="我是标题"
+            android:gravity="left"
+            android:layout_alignParentRight="true"
+            android:textSize="@dimen/dp_14"
+            android:textColor="@color/red"/>
+        <TextView
+            android:id="@+id/tvPeople"
+            style="@style/text_14_101010_style"
+            android:layout_marginTop="@dimen/dp10"
+            android:text="发布者：路飞"
+            android:layout_below="@+id/tvName"
+            android:gravity="left"
+            android:textColor="@color/_101010"
+           />
+        <TextView
+            android:id="@+id/tvTime"
+            android:gravity="right"
+            android:layout_toRightOf="@+id/tvPeople"
+          android:layout_alignParentRight="true"
+            style="@style/text_14_101010_style"
+            android:layout_marginTop="@dimen/dp40"
+            android:text="我是创建时间"
+            android:textColor="@color/gray3"
+            />
+    </RelativeLayout>
+
+
+
+</LinearLayout>

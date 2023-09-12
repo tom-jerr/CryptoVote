@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.system.mapper.AppuserInfoMapper">
+    
+    <resultMap type="AppuserInfo" id="AppuserInfoResult">
+        <result property="userId"    column="user_id"    />
+        <result property="nickname"    column="nickname"    />
+        <result property="userphone"    column="userphone"    />
+        <result property="password"    column="password"    />
+        <result property="sex"    column="sex"    />
+        <result property="age"    column="age"    />
+        <result property="introduce"    column="introduce"    />
+        <result property="remark"    column="remark"    />
+    </resultMap>
+
+
+    <resultMap type="AppZixun" id="zixunInfoResult">
+        <result property="zixun_id"    column="zixun_id"    />
+        <result property="title"    column="title"    />
+        <result property="img1"    column="img1"    />
+        <result property="mark"    column="mark"    />
+        <result property="user_id"    column="user_id"    />
+        <result property="backup"    column="backup"    />
+    </resultMap>
+
+
+    <insert id="insertzixunInfo" parameterType="AppZixun" useGeneratedKeys="true" keyProperty="zixun_id">
+        insert into app_zixun
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="zixun_id != null">zixun_id,</if>
+            <if test="title != null">title,</if>
+            <if test="img1 != null">img1,</if>
+            <if test="mark != null">mark,</if>
+            <if test="user_id != null">user_id,</if>
+            <if test="backup != null">backup,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="zixun_id != null">#{zixun_id},</if>
+            <if test="title != null">#{title},</if>
+            <if test="img1 != null">#{img1},</if>
+            <if test="mark != null">#{mark},</if>
+            <if test="user_id != null">#{user_id},</if>
+            <if test="backup != null">#{backup},</if>
+        </trim>
+    </insert>
+
+    <sql id="selectAppuserInfoVo">
+        select user_id, nickname, userphone, password, sex, age, introduce, remark from appuser_info
+    </sql>
+
+    <select id="selectappuser" parameterType="AppuserInfo" resultType="java.lang.Integer">
+        select count(1) from appuser_info where userphone = #{userphone} and password = #{password}
+    </select>
+
+    <select id="countappuser" parameterType="String" resultType="java.lang.Integer">
+        select count(1) from appuser_info where userphone = #{userphone}
+    </select>
+
+
+
+    <select id="findappuser" parameterType="String" resultType="java.util.Map">
+        select user_id, nickname, userphone, password, sex, age, introduce, remark,head_url,back_url from appuser_info where user_id = #{user_id}
+    </select>
+
+
+    <select id="zixun_info_map" parameterType="String" resultType="java.util.Map">
+        select zixun_id,title,img1,mark,backup,user_id,DATE_FORMAT(zx_systime,'%Y-%m-%d %H:%i:%s') as zx_systime from app_zixun where zixun_id = #{zixun_id}
+    </select>
+
+    <!--首页显示-->
+    <select id="selectfirstinfo" parameterType="String" resultType="java.util.Map">
+        select news_id,news_title,picurl,content,type,DATE_FORMAT(sys_time,'%Y-%m-%d %H:%i:%s') as sys_time from app_first_manage LIMIT 0 ,1000
+    </select>
+
+
+
+
+
+
+    <select id="selectAppuserInfoList" parameterType="AppuserInfo" resultMap="AppuserInfoResult">
+        <include refid="selectAppuserInfoVo"/>
+        <where>  
+            <if test="nickname != null  and nickname != ''"> and nickname like concat('%', #{nickname}, '%')</if>
+            <if test="userphone != null  and userphone != ''"> and userphone = #{userphone}</if>
+            <if test="password != null  and password != ''"> and password = #{password}</if>
+            <if test="sex != null  and sex != ''"> and sex = #{sex}</if>
+            <if test="age != null  and age != ''"> and age = #{age}</if>
+            <if test="introduce != null  and introduce != ''"> and introduce = #{introduce}</if>
+            <if test="user_id != null  and user_id != ''"> and user_id = #{userId}</if>
+        </where>
+    </select>
+    
+    <select id="selectAppuserInfoByUserId" parameterType="Long" resultMap="AppuserInfoResult">
+        <include refid="selectAppuserInfoVo"/>
+        where user_id = #{userId}
+    </select>
+        
+    <insert id="insertAppuserInfo" parameterType="AppuserInfo" useGeneratedKeys="true" keyProperty="userId">
+        insert into appuser_info
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="nickname != null">nickname,</if>
+            <if test="userphone != null">userphone,</if>
+            <if test="password != null">password,</if>
+            <if test="sex != null">sex,</if>
+            <if test="age != null">age,</if>
+            <if test="introduce != null">introduce,</if>
+            <if test="remark != null">remark,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="nickname != null">#{nickname},</if>
+            <if test="userphone != null">#{userphone},</if>
+            <if test="password != null">#{password},</if>
+            <if test="sex != null">#{sex},</if>
+            <if test="age != null">#{age},</if>
+            <if test="introduce != null">#{introduce},</if>
+            <if test="remark != null">#{remark},</if>
+         </trim>
+    </insert>
+
+
+
+    <update id="updateAppuserInfo" parameterType="AppuserInfo">
+        update appuser_info
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="nickname != null">nickname = #{nickname},</if>
+            <if test="userphone != null">userphone = #{userphone},</if>
+            <if test="password != null">password = #{password},</if>
+            <if test="sex != null">sex = #{sex},</if>
+            <if test="age != null">age = #{age},</if>
+            <if test="introduce != null">introduce = #{introduce},</if>
+            <if test="remark != null">remark = #{remark},</if>
+            <if test="head_url != null">head_url = #{head_url},</if>
+            <if test="back_url != null">back_url = #{back_url},</if>
+        </trim>
+        where user_id = #{userId}
+    </update>
+
+    <delete id="deleteAppuserInfoByUserId" parameterType="Long">
+        delete from appuser_info where user_id = #{userId}
+    </delete>
+
+    <delete id="deleteAppuserInfoByUserIds" parameterType="String">
+        delete from appuser_info where user_id in 
+        <foreach item="userId" collection="array" open="(" separator="," close=")">
+            #{userId}
+        </foreach>
+    </delete>
+
+</mapper>
